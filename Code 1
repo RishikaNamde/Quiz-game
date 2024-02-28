@@ -1,0 +1,51 @@
+class Quiz:
+    def __init__(self, questions):
+        self.questions = questions
+        self.score = 0
+
+    def display_question(self, question):
+        print(question['question'])
+        for option in question['options']:
+            print(option)
+
+    def check_answer(self, question, answer):
+        if answer.lower() == question['answer'].lower():
+            print("Correct!")
+            self.score += 1
+        else:
+            print(f"Incorrect. The correct answer is: {question['answer']}")
+
+    def run_quiz(self):
+        print("Welcome to the Quiz Game!")
+        print("Let's start...\n")
+        for question in self.questions:
+            self.display_question(question)
+            user_answer = input("Your answer: ")
+            self.check_answer(question, user_answer)
+            print()  
+        print(f"Quiz complete! Your final score is: {self.score}/{len(self.questions)}")
+
+
+if __name__ == "__main__":
+    
+    questions = [
+        {
+            'question': "What is the capital of France?",
+            'options': ["A) London", "B) Paris", "C) Rome", "D) Berlin"],
+            'answer': "B"
+        },
+        {
+            'question': "Which planet is known as the Red Planet?",
+            'options': ["A) Jupiter", "B) Mars", "C) Saturn", "D) Venus"],
+            'answer': "B"
+        },
+        {
+            'question': "Who wrote 'Romeo and Juliet'?",
+            'options': ["A) William Shakespeare", "B) Jane Austen", "C) Charles Dickens", "D) Mark Twain"],
+            'answer': "A"
+        }
+    ]
+
+    
+    quiz = Quiz(questions)
+    quiz.run_quiz()
